@@ -58,7 +58,7 @@
     <el-dialog
       title="提示"
       v-model="centerDialogVisible"
-      width="30%"
+      :width="windowWidth"
       destroy-on-close
       center>
       <span>{{result}}</span>
@@ -73,7 +73,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, reactive, toRefs, onMounted, onUpdated } from 'vue';
+import { defineComponent, reactive, toRefs,ref,  onMounted, onUpdated,watchEffect } from 'vue';
 import { ContentReplace, IboundarySymbol, IcontentReplace } from '@/utils/'
 import { ElMessage } from 'element-plus'
 import useClipboard from 'vue-clipboard3'
@@ -105,7 +105,7 @@ export default defineComponent({
   setup(){
     const { toClipboard } = useClipboard()
     let contentRep : IcontentReplace | null = null
-
+    let windowWidth = ref('100%')
     const data = reactive<Idata>({
       content:'',
       result:'',
@@ -115,7 +115,7 @@ export default defineComponent({
       curBoundarySymbol: IboundarySymbol['{}'],
       boundarySymbolRepeat: 2,
       centerDialogVisible: false,
-      boundarySymbols: []
+      boundarySymbols: [],
     })
 
     const newContentReplaceConfig = reactive<InewContentReplaceConfig>({
@@ -207,7 +207,20 @@ export default defineComponent({
       data.example = contentRep.getExample()
     }
 
+
     onMounted(() => {
+      const that = this
+      window.onresize = () => {
+        windowWidth.value = '30%'
+        if(document.body.clientWidth < 1440 && document.body.clientWidth >= 1024){
+          windowWidth.value = '40%'
+        } else if(document.body.clientWidth < 1024 && document.body.clientWidth >= 768){
+          windowWidth.value = '60%'
+        }else if(document.body.clientWidth < 768){
+          windowWidth.value = '90%'
+        }
+        console.log(document.body.clientWidth,windowWidth.value)
+      }
       newContentReplace()
       if(contentRep){
         data.boundarySymbols = contentRep.defaultBoundarySymbols
@@ -216,6 +229,7 @@ export default defineComponent({
         contentRep.defaultSymbolsBaseGen()
       }
     })
+    
 
     return {
       ...toRefs(data),
@@ -223,7 +237,8 @@ export default defineComponent({
       handelReplace,
       copyToClipboard,
       onChangeSymbol,
-      onChangeSymbolRepeat
+      onChangeSymbolRepeat,
+      windowWidth
     }
   }
 });
