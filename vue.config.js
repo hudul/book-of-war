@@ -1,6 +1,7 @@
 
 module.exports ={
     configureWebpack: {
-        plugins: []
-    }
+        plugins: [],
+    },
+    //publicPath: process.env.NODE_ENV === "production" ? "/dist/" : "/"
 }
