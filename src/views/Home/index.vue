@@ -343,4 +343,76 @@ export default defineComponent({
       }
     }
   }
+  @media screen and (max-width:1200px) {
+    .home{
+      .tools{
+        padding-bottom: 100px;
+        justify-content: space-between;
+        dl{
+          margin-right: 0;
+        }
+        button{
+          top: auto;
+          bottom: 10px;
+          left: 0;
+          width: 100%;
+        }
+      }
+    }
+  }
+  @media screen and (max-width:1024px) {
+    .home{
+      .contentBox{
+        flex-direction: column;
+        height: auto;
+        .content{
+          width: 100%;
+          height: 200px;
+        }
+        .arrowBox{
+          width: 100%;
+        }
+        .keysBox{
+          width: 100%;
+          .noConent{
+
+          }
+          ul{
+            li{
+
+            }
+          }
+        }
+      }
+      .tools{
+        dl{
+
+        }
+        
+      }
+    }
+  }
+  @media screen and (max-width:812px) {
+    .home{
+      padding: 20px;
+      .tools{
+        
+      }
+    }
+  }
+  @media screen and (max-width:768px) {
+    .home{
+      .tools{
+        flex-direction: column;
+        dl{
+          width: 100%;
+          justify-content: space-between;
+          dd{
+            margin-left: 0;
+          }
+        }
+        
+      }
+    }
+  }
 </style>
