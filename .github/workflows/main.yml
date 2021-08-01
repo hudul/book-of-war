@@ -31,7 +31,7 @@ jobs:
     - run: yarn build
 
     # 发布到Github pages
-    - names: Deploy
+    - name: Deploy
       uses: peaceiris/actions-gh-pages@v2
       env: 
         PERSONAL_TOKEN: ${{ secrets.ACCESS_TOKEN }} # 访问密钥
