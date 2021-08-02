@@ -292,7 +292,7 @@ export class ContentReplace implements IcontentReplace {
     }
   }
   getKeys = ():Array<string> | null => {
-    return this.keys
+    return Array.from(new Set(this.keys))
   }
   genResult = (prams:{[key:string]:string} | null):string => {
     this.replaceData = prams

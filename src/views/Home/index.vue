@@ -219,7 +219,7 @@ export default defineComponent({
         }else if(document.body.clientWidth < 768){
           windowWidth.value = '90%'
         }
-        console.log(document.body.clientWidth,windowWidth.value)
+        //console.log(document.body.clientWidth,windowWidth.value)
       }
       newContentReplace()
       if(contentRep){
@@ -424,6 +424,27 @@ export default defineComponent({
           justify-content: space-between;
           dd{
             margin-left: 0;
+          }
+        }
+        
+      }
+    }
+  }
+  @media screen and (max-width:375px) {
+    .home{
+      .tools{
+        flex-direction: column;
+        dl{
+          width: 100%;
+          justify-content: flex-start;
+          align-items: flex-start;
+          flex-direction: column;
+          dd,dt{
+            width: 100%;
+            margin-left: 0;
+          }
+          .el-select{
+            width: 100%;
           }
         }
         
